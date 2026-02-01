@@ -7,7 +7,7 @@ public class Projectile {
     private double x,y;
     private Enemy  target;
     private int damage;
-    private double speed = 5;
+    private double speed = 1200;
     private boolean active = true;
     //czy pocisk nadal jest w ruchu
 
@@ -24,7 +24,7 @@ public class Projectile {
         this.damage = damage;
     }
 
-    public void update(){
+    public void update(double delta) {
         if(!active || target == null) return;
 
         double dx = target.getX() - x;
@@ -35,8 +35,8 @@ public class Projectile {
             target.takeDamage(damage);
             active = false;
         }else{
-            x += dx/distance*speed;
-            y += dy/distance*speed;
+            x += dx/distance*speed * delta;
+            y += dy/distance*speed * delta;
         }
     }
 
