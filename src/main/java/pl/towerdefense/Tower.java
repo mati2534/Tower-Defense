@@ -6,9 +6,10 @@ import javafx.scene.paint.Color;
 public class Tower {
         private double x,y;
         private double range= 150;
-        private int damage = 30;
+        private int damage = 35;
         private double fireRate = 1;
         private double fireTimer = 0; //czas od ostatniego strzalu
+        public static final int cost = 100;
 
     public Tower(double x, double y) {
         this.x = x;
@@ -17,7 +18,12 @@ public class Tower {
 
     public void render(GraphicsContext gc) {
         gc.setFill(Color.GRAY);
-        gc.fillRect(x-15,y-25,30,50);
+        gc.fillRect(
+                x - (double)Main.tile_size / 2,
+                y- (double) Main.tile_size / 2,
+                Main.tile_size,
+                Main.tile_size
+        );
     }
 
     public Projectile tryShoot(double delta, Enemy target){
